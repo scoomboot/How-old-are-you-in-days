@@ -97,12 +97,27 @@ int main()
 {
 	int days_in_leap_year{ 366 };
 	int days_in_nonleap_year{ 365 };
-	int birth_year{ 1988 };
-	int birth_month{ 2 };
-	int birth_day{ 18 };
-	int current_year{ 2021 };
-	int current_month{ 12 };
-	int current_day{ 9 };
+	int birth_year{ 0 };
+	int birth_month{ 0 };
+	int birth_day{ 0 };
+	int current_year{ 0 };
+	int current_month{ 0 };
+	int current_day{ 0 };
+
+
+	std::cout << "Enter Birth Year: " << std::endl;
+	std::cin >> birth_year;
+	std::cout << "Enter Birth Day: " << std::endl;
+	std::cin >> birth_day;
+	std::cout << "Enter Numerical Birth Month: " << std::endl;
+	std::cin >> birth_month;
+
+	std::cout << "Enter Current Year: " << std::endl;
+	std::cin >> current_year;
+	std::cout << "Enter Current Day: " << std::endl;
+	std::cin >> current_day;
+	std::cout << "Enter Current Numerical Month: " << std::endl;
+	std::cin >> current_month;
 
 	int totalLeap = number_of_leap_years(current_year, birth_year);
 	int years = current_year - birth_year;
@@ -123,6 +138,9 @@ int main()
 	int total_days_old = totalNonleapDays + totalLeapDays + first_year_days - remaining_days_current_month;
 	
 	
+	
+
+
 	std::cout << total_days_old << std::endl;
 
 

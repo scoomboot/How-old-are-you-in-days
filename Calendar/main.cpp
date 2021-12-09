@@ -1,5 +1,8 @@
 #include <iostream>
 
+static const int month_days[13]{ 0,31,28,31,30,31,30,31,31,30,31,30,31 };
+static const int month_days_leap[13]{ 0,31,29,31,30,31,30,31,31,30,31,30,31 };
+
 // true if leap year
 bool leap_year(int year) {
 	if (year % 4 == 0 && year%100!=0)
@@ -27,8 +30,7 @@ int number_of_leap_years(int currentYear, int birthYear){
 int days_in_month(int month, int year) {
 	bool isLeap{ false };
 	isLeap = leap_year(year);
-	int month_days[13]{ 0,31,28,31,30,31,30,31,31,30,31,30,31};
-	int month_days_leap[13]{ 0,31,29,31,30,31,30,31,31,30,31,30,31 };
+	
 
 	if (isLeap) {
 		return month_days_leap[month];
@@ -39,8 +41,6 @@ int days_in_month(int month, int year) {
 
 int birth_year_days_old(int year, int month, int day){
 
-	int month_days[13]{ 0,31,28,31,30,31,30,31,31,30,31,30,31 };
-	int month_days_leap[13]{ 0,31,29,31,30,31,30,31,31,30,31,30,31 };
 	if (leap_year(year)) {
 		int days{ 0 };
 		
@@ -65,8 +65,6 @@ int birth_year_days_old(int year, int month, int day){
 	}
 }
 int remaining_days_in_current_month(int month, int day, int year) {
-	int month_days[13]{ 0,31,28,31,30,31,30,31,31,30,31,30,31 };
-	int month_days_leap[13]{ 0,31,29,31,30,31,30,31,31,30,31,30,31 };
 	
 	if (leap_year(year)) {
 		return month_days_leap[month] - day;

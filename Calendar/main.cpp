@@ -80,6 +80,18 @@ int birth_year_days_old(int year, int month, int day)
 		return days + (month_days[month] - day);
 	}
 }
+int remaining_days_in_current_month(int month, int day, int year)
+{
+	int month_days[13]{ 0,31,28,31,30,31,30,31,31,30,31,30,31 };
+	int month_days_leap[13]{ 0,31,29,31,30,31,30,31,31,30,31,30,31 };
+	
+	if (leap_year(year))
+	{
+		return month_days_leap[month] - day;
+	}
+	else
+		return month_days[month] - day;
+}
 
 int main()
 {
@@ -89,6 +101,8 @@ int main()
 	int birth_month{ 2 };
 	int birth_day{ 18 };
 	int current_year{ 2021 };
+	int current_month{ 12 };
+	int current_day{ 9 };
 
 	int totalLeap = number_of_leap_years(current_year, birth_year);
 	int years = current_year - birth_year;
@@ -103,10 +117,12 @@ int main()
 	int totalLeapDays = totalLeap * days_in_leap_year;
 	// days in non leap years
 	int totalNonleapDays = totalNonLeap * days_in_nonleap_year;
-	// days in leap + non leap + first ?
-	int total_days_old = totalNonleapDays + totalLeapDays + first_year_days;
 	
-	// off by 23 days, think it has something to do with days in current month ? - Need to subtract remaining days in current month!!!!!!!!!
+	int remaining_days_current_month = remaining_days_in_current_month(current_month, current_day, current_year);
+	// days in leap + non leap + first ?
+	int total_days_old = totalNonleapDays + totalLeapDays + first_year_days - remaining_days_current_month;
+	
+	
 	std::cout << total_days_old << std::endl;
 
 

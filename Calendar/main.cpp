@@ -71,7 +71,7 @@ int birth_year_days_old(int year, int month, int day)
 	{
 		int days{ 0 };
 
-		// i < 13 will go over the end of the array
+		// i < 13 will go over the end of the array?
 		for (int i = month + 1; i < 13; ++i)
 		{
 			days += month_days[i];
@@ -89,13 +89,6 @@ int main()
 	int birth_month{ 2 };
 	int birth_day{ 18 };
 	int current_year{ 2021 };
-	int current_month{ 12 };
-	int current_day{ 8 };
-
-	//int month_days[13]{ 0,31,28,31,30,31,30,31,31,30,31,30,31 };
-	//int month_days_leap[13]{ 0,31,29,31,30,31,30,31,31,30,31,30,31 };
-
-
 
 	int totalLeap = number_of_leap_years(current_year, birth_year);
 	int years = current_year - birth_year;
@@ -113,7 +106,7 @@ int main()
 	// days in leap + non leap + first ?
 	int total_days_old = totalNonleapDays + totalLeapDays + first_year_days;
 	
-	// off by 23 days, think it has something to do with days in current month ?
+	// off by 23 days, think it has something to do with days in current month ? - Need to subtract remaining days in current month!!!!!!!!!
 	std::cout << total_days_old << std::endl;
 
 

@@ -5,12 +5,7 @@ static const int month_days_leap[13]{ 0,31,29,31,30,31,30,31,31,30,31,30,31 };
 
 // true if leap year
 bool leap_year(int year) {
-	if (year % 4 == 0 && year%100!=0)
-	{
-		return true;
-	}
-	else
-		return false;
+	if (year % 4 == 0 && year%100!=0) { return true; } else { return false; }
 }
 
 // enter a year and calc next leap year.
@@ -32,20 +27,18 @@ int days_in_month(int month, int year) {
 	isLeap = leap_year(year);
 	
 
-	if (isLeap) {
-		return month_days_leap[month];
-	}
-	else
-		return month_days[month];
+	if (isLeap) { return month_days_leap[month]; }
+	else { return month_days[month]; }
 }
 
+// loops through months starting on following month ( month + 1 )
+//than subtract the birth day to get total days in the first year,
 int birth_year_days_old(int year, int month, int day){
 
 	if (leap_year(year)) {
+
 		int days{ 0 };
 		
-		// i < 13 will go over the end of the array
-		// Why am i starting at month + 1 ?? why does this work! 
 		for (int i = month + 1; i < 13; ++i)
 		{
 			days += month_days_leap[i];
@@ -56,8 +49,6 @@ int birth_year_days_old(int year, int month, int day){
 	else {
 		int days{ 0 };
 
-		// loops through months starting on following month ( month + 1 )
-		//than subtract the birth day to get total days in the first year,
 		for (int i = month + 1; i < 13; ++i)
 		{
 			days += month_days[i];
@@ -68,11 +59,8 @@ int birth_year_days_old(int year, int month, int day){
 }
 int remaining_days_in_current_month(int month, int day, int year) {
 	
-	if (leap_year(year)) {
-		return month_days_leap[month] - day;
-	}
-	else
-		return month_days[month] - day;
+	if (leap_year(year)) { return month_days_leap[month] - day; }
+	else { return month_days[month] - day; }
 }
 
 int main()

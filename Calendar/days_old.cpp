@@ -1,6 +1,17 @@
 #include "days_old.h"
 
-bool Days_old::leap_year(int year)
+Days_old::Days_old(int birth_year, int birth_month, int birth_day, int current_year, int current_month, int current_day)
+{
+	m_birth_year = birth_year;
+	m_birth_month = birth_month;
+	m_birth_day = birth_year;
+	m_current_year = current_year;
+	m_current_month = current_month;
+	m_current_day = current_day;
+
+}
+
+bool Days_old::is_leap_year(int year)
 {
 	if (year % 4 == 0 && year % 100 != 0) { return true; }
 	else { return false; }
@@ -8,47 +19,47 @@ bool Days_old::leap_year(int year)
 
 int Days_old::next_leap(int year)
 {
-	while (!leap_year(year)) { year++; } return year;
+	while (!is_leap_year(year)) { year++; } return year;
 }
 
-int Days_old::number_of_leap_years(int currentYear, int birthYear)
+int Days_old::total_leap_years()
 {
-	if (leap_year(birthYear)) {
-		return (currentYear - birthYear) / 4;
+	if (is_leap_year(m_birth_year)) {
+		return (m_current_year - m_birth_year) / 4;
 	}
 	else {
-		int nextLeap = next_leap(birthYear);
-		return (currentYear - nextLeap) / 4;
+		//int nextLeap = next_leap(m_birth_year);
+		return (m_current_year - next_leap(m_birth_year)) / 4;
 	}
 }
 
-int Days_old::birth_year_days_old(int year, int month, int day)
+int Days_old::birth_year_days_old()
 {
-	if (leap_year(year)) {
+	if (is_leap_year(m_birth_year)) {
 
 		int days{ 0 };
 
-		for (int i = month + 1; i < 13; ++i)
+		for (int i = m_birth_month + 1; i < 13; ++i)
 		{
 			days += month_days_leap[i];
 		}
 
-		return days + (month_days_leap[month] - day);
+		return days + (month_days_leap[m_birth_month] - m_birth_day);
 	}
 	else {
 		int days{ 0 };
 
-		for (int i = month + 1; i < 13; ++i)
+		for (int i = m_birth_month + 1; i < 13; ++i)
 		{
 			days += month_days[i];
 		}
 
-		return days + (month_days[month] - day);
+		return days + (month_days[m_birth_month] - m_birth_day);
 	}
 }
 
-int Days_old::remaining_days_in_current_month(int month, int day, int year)
+int Days_old::remaining_days_in_current_month()
 {
-	if (leap_year(year)) { return month_days_leap[month] - day; }
-	else { return month_days[month] - day; }
+	if (is_leap_year(m_birth_year)) { return month_days_leap[m_birth_month] - m_birth_day; }
+	else { return month_days[m_birth_month] - m_birth_day; }
 }

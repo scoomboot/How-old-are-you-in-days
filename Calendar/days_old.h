@@ -28,6 +28,7 @@ private:
 	int m_current_year{ 0 };
 	int m_current_month{ 0 };
 	int m_current_day{ 0 };
+	int m_days{ 0 };
 	const int month_days[13]{ 0,31,28,31,30,31,30,31,31,30,31,30,31 };
 	const int month_days_leap[13]{ 0,31,29,31,30,31,30,31,31,30,31,30,31 };
 };

@@ -37,24 +37,21 @@ int Days_old::birth_year_days_old()
 {
 	if (is_leap_year(m_birth_year)) {
 
-		int days{ 0 };
-
 		for (int i = m_birth_month + 1; i < 13; ++i)
 		{
-			days += month_days_leap[i];
+			m_days += month_days_leap[i];
 		}
 
-		return days + (month_days_leap[m_birth_month] - m_birth_day);
+		return m_days + (month_days_leap[m_birth_month] - m_birth_day);
 	}
 	else {
-		int days{ 0 };
-
+		
 		for (int i = m_birth_month + 1; i < 13; ++i)
 		{
-			days += month_days[i];
+			m_days += month_days[i];
 		}
 
-		return days + (month_days[m_birth_month] - m_birth_day);
+		return m_days + (month_days[m_birth_month] - m_birth_day);
 	}
 }
 

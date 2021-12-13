@@ -4,7 +4,7 @@ Days_old::Days_old(int birth_year, int birth_month, int birth_day, int current_y
 {
 	m_birth_year = birth_year;
 	m_birth_month = birth_month;
-	m_birth_day = birth_year;
+	m_birth_day = birth_day;
 	m_current_year = current_year;
 	m_current_month = current_month;
 	m_current_day = current_day;
@@ -55,8 +55,12 @@ int Days_old::birth_year_days_old()
 	}
 }
 
-int Days_old::remaining_days_in_current_month()
+int Days_old::total_days_old()
 {
-	if (is_leap_year(m_birth_year)) { return month_days_leap[m_birth_month] - m_birth_day; }
-	else { return month_days[m_birth_month] - m_birth_day; }
+	if (is_leap_year(m_current_year))
+	{
+		return (total_non_leap_days() + total_leap_days() + birth_year_days_old() + m_current_day) - month_days_leap[m_current_month];
+	}else
+		return m_total_days_old = (total_non_leap_days() + total_leap_days() + birth_year_days_old() + m_current_day) - month_days[m_current_month];
+	
 }
